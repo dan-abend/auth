@@ -1,12 +1,13 @@
 <h1>Do the TODOs</h1>
 
+<% if @current_user%>
 <%= form_with model: @task do |form| %>
   <%= form.text_field "description" %>
   <%= form.submit "Add new task" %>
 <% end %>
 
 <table>
-  <% for task in @tasks %>
+  <% for task in @tasks.where({user_id: @current_user.id}) %>
     <tr>
       <td>
         <%= task.description %>
@@ -17,3 +18,4 @@
     </tr>
   <% end %>
 </table>
+ <% end %>

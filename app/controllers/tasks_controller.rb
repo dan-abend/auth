@@ -6,6 +6,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(params["task"])
+    @task.user_id = @current_user.id
     @task.save
     redirect_to "/tasks"
   end
